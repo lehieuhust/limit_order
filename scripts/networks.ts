@@ -11,9 +11,9 @@ export interface Network {
 }
 
 export const oraiConfig: Network = {
-  chainId: "Oraichain-testnet",
-  rpcEndpoint: "https://testnet-rpc.orai.io/",
+  chainId: "testing",
+  rpcEndpoint: "http://0.0.0.0:26657",
   prefix: "orai",
-  gasPrice: new GasPrice(Decimal.fromUserInput('0', 6), "orai"),
+  gasPrice: new GasPrice(Decimal.fromUserInput('1', 6), "orai"),
   feeToken: "orai",
 };

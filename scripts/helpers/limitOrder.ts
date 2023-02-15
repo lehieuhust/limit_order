@@ -20,7 +20,7 @@ export async function instantiateContract(
     // @ts-ignore
     initMsg,
     "order book contract",
-    "auto",
+    100,
     {
       admin: address,
     }
@@ -33,8 +33,7 @@ export async function excecuteContract(
   senderAddress: string,
   contractAddress: string,
 ) {
-
-  const excecute_orderbookpair: ExecuteMsg = {
+  const create_orderbookpair: ExecuteMsg = {
     create_order_book_pair: {
       base_coin_info: {
         native_token: {
@@ -50,16 +49,181 @@ export async function excecuteContract(
       min_base_coin_amount: "10"
     },
   };
+  let res = await client.execute(
+    senderAddress,
+    contractAddress,
+    create_orderbookpair,
+    'auto',
+    '',
+    [coin(200, "orai")],
+  );
+  console.log("Create orderbook pair res:");
+  console.log(res);
 
-  const info = await client.execute(
+  const submitOrder1: ExecuteMsg = {
+    submit_order: {
+      assets: [
+        {
+          amount: "100",
+          info: {
+            native_token: {
+              denom: "usdt"
+            }
+          }
+        },
+        {
+          amount: "600",
+          info: {
+            native_token: {
+              denom: "orai"
+            }
+          }
+        },
+      ],
+      direction: "buy"
+    }
+  };
+
+  res = await client.execute(
+    senderAddress,
+    contractAddress,
+    submitOrder1,
+    'auto',
+    '',
+    [coin(100, "usdt")],
+  );
+  console.log("Submit order 1 res:");
+  console.log(res);
+  
+  
+  const submitOrder2: ExecuteMsg = {
+    submit_order: {
+      assets: [
+        {
+          amount: "100",
+          info: {
+            native_token: {
+              denom: "usdt"
+            }
+          }
+        },
+        {
+          amount: "610",
+          info: {
+            native_token: {
+              denom: "orai"
+            }
+          }
+        },
+      ],
+      direction: "buy"
+    }
+  };
+  res = await client.execute(
+    senderAddress,
+    contractAddress,
+    submitOrder2,
+    'auto',
+    '',
+    [coin(100, "usdt")],
+  );
+  console.log("Submit order 2 res:");
+  console.log(res);
+
+  const submitOrder3: ExecuteMsg = {
+    submit_order: {
+      assets: [
+        {
+          amount: "100",
+          info: {
+            native_token: {
+              denom: "usdt"
+            }
+          }
+        },
+        {
+          amount: "600",
+          info: {
+            native_token: {
+              denom: "orai"
+            }
+          }
+        },
+      ],
+      direction: "sell"
+    }
+  };
+
+  res = await client.execute(
+    senderAddress,
+    contractAddress,
+    submitOrder3,
+    'auto',
+    '',
+    [coin(600, "orai")],
+  );
+  console.log("Submit order 3 res:");
+  console.log(res);
+  
+  const submitOrder4: ExecuteMsg = {
+    submit_order: {
+      assets: [
+        {
+          amount: "100",
+          info: {
+            native_token: {
+              denom: "usdt"
+            }
+          }
+        },
+        {
+          amount: "610",
+          info: {
+            native_token: {
+              denom: "orai"
+            }
+          }
+        },
+      ],
+      direction: "sell"
+    }
+  };
+  res = await client.execute(
+    senderAddress,
+    contractAddress,
+    submitOrder4,
+    'auto',
+    '',
+    [coin(610, "orai")],
+  );
+  console.log("Submit order 4 res:");
+  console.log(res);
+  
+  const excecute_orderbookpair: ExecuteMsg = {
+    execute_order_book_pair: {
+      asset_infos: [
+        {
+          native_token: {
+            denom: "orai"
+          },
+        },
+        {
+          native_token: {
+            denom: "usdt"
+          },
+        }
+      ],
+    },
+  };
+  await client.execute(
     senderAddress,
     contractAddress,
     excecute_orderbookpair,
     'auto',
     '',
-    [coin(200, "orai")],
+    [coin(600, "usdt")],
   );
-  return info;
+
 }
 
 export async function queryContract(
@@ -83,23 +247,103 @@ export async function queryContract(
       ]
     },
   };
-
-  // const queryAllOrderbookpair: QueryMsg = {
-  //   order_books: {
-  //     limit: null,
-  //     order_by: null,
-  //     start_after: null,
-  //   },
-  // };
-  // console.log(`query msg ${JSON.stringify(queryAllOrderbookpair)}`);
-  // const queryAdmin: QueryMsg = {
-  //   contract_info: {}
-  // };
-
-  const info = await client.queryContractSmart(
+  const query_pair = await client.queryContractSmart(
     contractAddress,
     queryOrderbookpair
   );
-  console.log("query log",+ info);
-  return info;
+  console.log(query_pair);
+
+  const queryOrder_1: QueryMsg = {
+    order: {
+      asset_infos: [
+        {
+          native_token: {
+            denom: "orai"
+          },
+        },
+        {
+          native_token: {
+            denom: "usdt"
+          },
+        }
+      ],
+      order_id: 1
+    }
+  }
+  const query_order_res = await client.queryContractSmart(
+    contractAddress,
+    queryOrder_1
+  );
+  console.log(query_order_res);
+
+  const queryOrder_2: QueryMsg = {
+    order: {
+      asset_infos: [
+        {
+          native_token: {
+            denom: "orai"
+          },
+        },
+        {
+          native_token: {
+            denom: "usdt"
+          },
+        }
+      ],
+      order_id: 2
+    }
+  }
+  const query_order_2 = await client.queryContractSmart(
+    contractAddress,
+    queryOrder_2
+  );
+  console.log(query_order_2);
+
+  const queryOrder_3: QueryMsg = {
+    order: {
+      asset_infos: [
+        {
+          native_token: {
+            denom: "orai"
+          },
+        },
+        {
+          native_token: {
+            denom: "usdt"
+          },
+        }
+      ],
+      order_id: 3
+    }
+  }
+  const query_order_3 = await client.queryContractSmart(
+    contractAddress,
+    queryOrder_3
+  );
+  console.log(query_order_3);
+
+  const queryOrder_4: QueryMsg = {
+    order: {
+      asset_infos: [
+        {
+          native_token: {
+            denom: "orai"
+          },
+        },
+        {
+          native_token: {
+            denom: "usdt"
+          },
+        }
+      ],
+      order_id: 4
+    }
+  }
+  const query_order_4 = await client.queryContractSmart(
+    contractAddress,
+    queryOrder_4
+  );
+  console.log(query_order_4);
+  
+  return query_pair;
 }

@@ -17,10 +17,11 @@ async function main(): Promise<void> {
   let {amount} = await client.getBalance(address, oraiConfig.feeToken);
   console.log(`balance of ${address} is ${amount}`);
 
-  // excecute the contract
-  const res = await queryContract(client, "orai16d3k9287605lft0jnjcvcgs0d4vlured959vu36h8zs9x0vphurqk48apk");
+  // query the contract
+  // TODO: you must change orai1wkwy0xh89ksdgj9hr347dyd2dw7zesmtrue6kfzyml4vdtz6e5ws5thn3e to your contract address
+  const res = await queryContract(client, "orai1wkwy0xh89ksdgj9hr347dyd2dw7zesmtrue6kfzyml4vdtz6e5ws5thn3e");
 
-  console.log(`excecute response: ${res}`);
+  // console.log(res);
 }
 
 main().then(

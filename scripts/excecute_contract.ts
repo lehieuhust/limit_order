@@ -18,9 +18,8 @@ async function main(): Promise<void> {
   console.log(`balance of ${address} is ${amount}`);
 
   // excecute the contract
-  const res = await excecuteContract(client, address, "orai16d3k9287605lft0jnjcvcgs0d4vlured959vu36h8zs9x0vphurqk48apk");
-
-  console.log(`excecute response: ${res}`);
+  // TODO: you must change orai1wkwy0xh89ksdgj9hr347dyd2dw7zesmtrue6kfzyml4vdtz6e5ws5thn3e to your contract address
+  await excecuteContract(client, address, "orai1wkwy0xh89ksdgj9hr347dyd2dw7zesmtrue6kfzyml4vdtz6e5ws5thn3e");
 }
 
 main().then(

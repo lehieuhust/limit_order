@@ -198,32 +198,6 @@ export async function excecuteContract(
   );
   console.log("Submit order 4 res:");
   console.log(res);
-  
-  const excecute_orderbookpair: ExecuteMsg = {
-    execute_order_book_pair: {
-      asset_infos: [
-        {
-          native_token: {
-            denom: "orai"
-          },
-        },
-        {
-          native_token: {
-            denom: "usdt"
-          },
-        }
-      ],
-    },
-  };
-  await client.execute(
-    senderAddress,
-    contractAddress,
-    excecute_orderbookpair,
-    'auto',
-    '',
-    [coin(600, "usdt")],
-  );
-
 }
 
 export async function queryContract(
@@ -344,6 +318,30 @@ export async function queryContract(
     queryOrder_4
   );
   console.log(query_order_4);
-  
+
+  const queryOrder_tick: QueryMsg = {
+    ticks: {
+      asset_infos: [
+        {
+          native_token: {
+            denom: "usdt"
+          },
+        },
+        {
+          native_token: {
+            denom: "orai"
+          },
+        }
+      ],
+      direction: "sell",
+      limit: 10,
+      order_by: 1,
+    }
+  }
+  const query_tick = await client.queryContractSmart(
+    contractAddress,
+    queryOrder_tick
+  );
+  console.log('tick',query_tick);
   return query_pair;
 }

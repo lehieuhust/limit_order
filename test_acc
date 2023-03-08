@@ -1,0 +1,37 @@
+- name: validator1
+  type: local
+  address: orai1vlzt2ywz4ycaqcr32f4mfucc7vau90n4r2w2m8
+  pubkey: '{"@type":"/cosmos.crypto.secp256k1.PubKey","key":"A8dQLG8+WB/Gxb7f8yNOsYe+Wcte0REsvQa10LpjXN7d"}'
+  mnemonic: ""
+
+
+**Important** write this mnemonic phrase in a safe place.
+It is the only way to recover your account if you ever forget your password.
+
+master illegal wide recycle gaze museum veteran noodle forget actual desert violin loud crime color story pistol wife vanish install roof siege toe history
++ oraid keys add validator2 --keyring-backend=test --home=/Users/hieule/.oraid/validator2
+
+- name: validator2
+  type: local
+  address: orai1rf7yx09lennl58n4syq58xdnfddvmkc3yz9y0c
+  pubkey: '{"@type":"/cosmos.crypto.secp256k1.PubKey","key":"AiD5712yAO6kiZlvE/JCt1i6q/2Vssmbg01KuwPqBLNz"}'
+  mnemonic: ""
+
+
+**Important** write this mnemonic phrase in a safe place.
+It is the only way to recover your account if you ever forget your password.
+
+destroy invite bus initial fine index body bamboo deliver taste cause body lemon stock airport blast share ranch divide visit six legend vocal carbon
++ oraid keys add validator3 --keyring-backend=test --home=/Users/hieule/.oraid/validator3
+
+- name: validator3
+  type: local
+  address: orai1p3zmfqtvlakcrwxh9r3z0n9mehrfuspz250u02
+  pubkey: '{"@type":"/cosmos.crypto.secp256k1.PubKey","key":"Av2mvxRsFZUQIBAeWPRudOheijgg5J6uxbCkN+XI6nvA"}'
+  mnemonic: ""
+
+
+**Important** write this mnemonic phrase in a safe place.
+It is the only way to recover your account if you ever forget your password.
+
+scare solid gentle cost nephew arrow room usual chef awesome network panther alter vintage deer patch oblige advance frog faint kitchen calm remember dynamic

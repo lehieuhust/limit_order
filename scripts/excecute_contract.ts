@@ -18,8 +18,8 @@ async function main(): Promise<void> {
   console.log(`balance of ${address} is ${amount}`);
 
   // excecute the contract
-  // TODO: you must change orai1hrpna9v7vs3stzyd4z3xf00676kf78zpe2u5ksvljswn2vnjp3ys44n5sx to your contract address
-  await excecuteContract(client, address, "orai1hrpna9v7vs3stzyd4z3xf00676kf78zpe2u5ksvljswn2vnjp3ys44n5sx");
+  // TODO: you must change orai1ufs3tlq4umljk0qfe8k5ya0x6hpavn897u2cnf9k0en9jr7qarqqr0335g to your contract address
+  await excecuteContract(client, address, "orai1ufs3tlq4umljk0qfe8k5ya0x6hpavn897u2cnf9k0en9jr7qarqqr0335g");
 }
 
 main().then(
